@@ -1,4 +1,5 @@
 import { useFetchPosts } from "./utils/fetchPosts";
+import "./App.css"
 
 function App() {
   const { posts, error } = useFetchPosts();
@@ -6,9 +7,9 @@ function App() {
   return (
     <>
       {error ? (
-        <div>Data fetching failed</div>
+        <div className="error-message">Data fetching failed</div>
       ) : (
-        <div>
+        <div className="blog-posts">
           <h1>Posts</h1>
           {posts.map((post, index) => (
             <div key={index}>
