@@ -2,13 +2,18 @@ import { useFetchPosts } from "./utils/fetchPosts";
 import "./App.css"
 
 function App() {
-  const { posts, error } = useFetchPosts();
+const { posts, error, isLoading } = useFetchPosts();
+
+if (isLoading) {
+  return <h1 className="loading-indicator">Loading...</h1>;
+}
+
+if (error) {
+  return <h1 className="error-message">Data fetching failed</h1>;
+}
 
   return (
     <>
-      {error ? (
-        <div className="error-message">Data fetching failed</div>
-      ) : (
         <div className="blog-posts">
           <h1>Posts</h1>
           {posts.map((post, index) => (
@@ -20,7 +25,6 @@ function App() {
             </div>
           ))}
         </div>
-      )}
     </>
   );
 }
